@@ -88,6 +88,6 @@ df = pd.DataFrame(comparison_data,
                   columns=['Amazon Phone', 'Amazon Price', 'Flipkart Phone', 'Flipkart Price', 'Price Difference'])
 
 # Save the DataFrame to an Excel file
-df.to_excel('phone_price_comparison.xlsx', index=False)
+df.to_excel('phone_price_comparison1.xlsx', index=False)
 
 print("Comparison data has been saved to phone_price_comparison.xlsx")
