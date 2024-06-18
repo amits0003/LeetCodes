@@ -24,17 +24,17 @@ def LetterCombination(s):
     data_dict = {"2": ["a", "b", "c"], "3": ["d", "e", "f"], "4": ["g", "h", "i"],
                  "5": ["j", "k", "l"], "6": ["m", "n", "o"], "7": ["p", "q", "r", "s"],
                  "8": ["t", "u", "v"], "9": ["w", "x", "y", "z"]}
-    tempDict = {}
-    for ele in s:
-        if ele in data_dict.keys():
-            tempDict[ele] = data_dict[ele]
+    if s == "":
+        return []
+
     res = []
-    for key, value in enumerate(tempDict.values()):
-        res.append(value)
+    for ele in s:
+        if ele in data_dict:
+            res.append(data_dict[ele])
 
     nRes = ["".join(comb) for comb in itertools.product(*res)]
 
     return nRes
 
 
-print(LetterCombination('234'))
+print(LetterCombination('23'))
