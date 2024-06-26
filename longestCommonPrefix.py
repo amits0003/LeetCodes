@@ -66,6 +66,33 @@ strs = ["baab", "bacb", "b", "cbc"]
 strs1 = ["abab", "aba", ""]
 str2 = ["aac", "cab", "abb"]
 str3 = ["abca", "aba", "aaab"]
-# print(longestCommonPrefix(str3))
-# print(strs[1:])
+print(longestCommonPrefix(str3))
+print(strs[1:])
 
+def alternate_min_max(array):
+    # Sort the array
+    sorted_array = sorted(array)
+
+    # Initialize result array
+    result = []
+
+    # Indices for filling result
+    left, right = 0, len(array) - 1
+
+    # Fill result with alternate min and max values
+    for i in range(len(array)):
+        if i % 2 == 0:
+            result.append(sorted_array[right])
+            right -= 1
+        else:
+            result.append(sorted_array[left])
+            left += 1
+
+    return result
+
+
+# Example usage:
+# array = [1, 23, 43, 5435, 6565, 69494, 242, 33]
+# result = alternate_min_max(array)
+# print("Array sorted in alternating min/max pattern:")
+# print(result)

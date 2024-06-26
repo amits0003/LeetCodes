@@ -15,9 +15,9 @@ def isSubSequence(a,b):
 
     while i < m and j < n:
         if a[i] == b[j]:
-            i = i +1
+            i = i + 1
             newArr.append(b[j])
-        j = j+ 1
+        j = j + 1
 
     #print(newArr)
     return i == len(a)
