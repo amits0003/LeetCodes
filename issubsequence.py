@@ -23,7 +23,7 @@ def isSubSequence(a,b):
     return i == len(a)
 
 
-d = 'aec'
+d = 'acc'
 f = "abcde"
 print(f[:])
 print(isSubSequence(d,f))

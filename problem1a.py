@@ -14,7 +14,7 @@ def print_directory(directory, prefix=''):
 
 
 def main():
-    with open('structure.json', 'r') as file:
+    with open('zuru/structure.json', 'r') as file:
         data = json.load(file)
 
     print_directory(data)
