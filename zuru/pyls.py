@@ -65,15 +65,21 @@ def find_path(data, path_parts):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='List directory contents from JSON structure.')
+    parser = argparse.ArgumentParser(
+        description='List directory contents from JSON structure.',
+        usage='python -m pyls [options] [path]',
+        epilog='For more information, see the documentation.'
+    )
+
     parser.add_argument('-A', action='store_true',
                         help='Include all files and directories, including those starting with a dot')
     parser.add_argument('-l', action='store_true', help='List in long format with additional information')
     parser.add_argument('-r', action='store_true', help='Reverse the order of the output')
     parser.add_argument('-t', action='store_true', help='Sort by time modified')
     parser.add_argument('-h', action='store_true', help='Show human readable size')
-    parser.add_argument('--filter', type=str, help='Filter the results by file or dir')
+    parser.add_argument('--filter', type=str, choices=['file', 'dir'], help='Filter the results by file or dir')
     parser.add_argument('path', nargs='?', default='.', help='Path to the directory or file within the JSON structure')
+
     args = parser.parse_args()
 
     json_file_path = 'structure.json'
