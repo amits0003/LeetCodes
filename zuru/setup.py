@@ -10,16 +10,12 @@ setup(
         ],
     },
     install_requires=[
-        # Add any dependencies your project needs here
+        "setuptools", "Wheel"
     ],
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Amit",
     description="A command-line tool to list directory contents from JSON structure",
-    url="https://github.com/yourusername/pyls",
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        "Programming LanguagePython3"
     ],
     python_requires='>=3.8',
 )
