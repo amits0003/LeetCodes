@@ -13,12 +13,12 @@ def list_directory_contents(contents, show_all=False):
     return items
 
 
-def format_item(item):
+def format_item(item, path_prefix=""):
     permissions = item.get('permissions', '----------')
     size = item.get('size', 0)
     timestamp = item.get('time_modified', 0)
     date_time = datetime.fromtimestamp(timestamp).strftime('%b %d %H:%M')
-    name = item['name']
+    name = os.path.join(path_prefix, item['name']) if path_prefix else item['name']
     return f"{permissions} {size:>5} {date_time} {name}"
 
 
@@ -32,6 +32,28 @@ def filter_items(items, filter_option):
         sys.exit(1)
 
 
+def find_path(data, path_parts):
+    current_level = data
+    for part in path_parts:
+        if 'contents' in current_level:
+            found = False
+            for item in current_level['contents']:
+                if item['name'] == part:
+                    current_level = item
+                    found = True
+                    break
+            if not found:
+                print(f"error: cannot access '{'/'.join(path_parts)}': No such file or directory")
+                sys.exit(1)
+        else:
+            if current_level['name'] == part:
+                return current_level, '/'.join(path_parts[:-1])
+            else:
+                print(f"error: cannot access '{'/'.join(path_parts)}': No such file or directory")
+                sys.exit(1)
+    return current_level, '/'.join(path_parts)
+
+
 def main():
     parser = argparse.ArgumentParser(description='List directory contents from JSON structure.')
     parser.add_argument('-A', action='store_true',
@@ -40,6 +62,7 @@ def main():
     parser.add_argument('-r', action='store_true', help='Reverse the order of the output')
     parser.add_argument('-t', action='store_true', help='Sort by time modified')
     parser.add_argument('--filter', type=str, help='Filter the results by file or dir')
+    parser.add_argument('path', nargs='?', default='.', help='Path to the directory or file within the JSON structure')
     args = parser.parse_args()
 
     json_file_path = 'structure.json'
@@ -55,22 +78,31 @@ def main():
         print("Error: Invalid JSON structure. 'contents' key not found.")
         sys.exit(1)
 
-    top_level_contents = list_directory_contents(data['contents'], show_all=args.A)
+    path_parts = args.path.split('/')
+    target, path_prefix = find_path(data, path_parts)
 
-    if args.t:
-        top_level_contents.sort(key=lambda item: item.get('time_modified', 0))
+    if 'contents' in target:
+        items = list_directory_contents(target['contents'], show_all=args.A)
 
-    if args.r:
-        top_level_contents.reverse()
+        if args.t:
+            items.sort(key=lambda item: item.get('time_modified', 0))
 
-    if args.filter:
-        top_level_contents = filter_items(top_level_contents, args.filter)
+        if args.r:
+            items.reverse()
 
-    if args.l:
-        for item in top_level_contents:
-            print(format_item(item))
+        if args.filter:
+            items = filter_items(items, args.filter)
+
+        if args.l:
+            for item in items:
+                print(format_item(item, path_prefix))
+        else:
+            print(' '.join([item['name'] for item in items]))
     else:
-        print(' '.join([item['name'] for item in top_level_contents]))
+        if args.l:
+            print(format_item(target, path_prefix))
+        else:
+            print(target['name'])
 
 
 if __name__ == '__main__':
