@@ -5,6 +5,14 @@ import argparse
 from datetime import datetime
 
 
+def human_readable_size(size):
+    for unit in ['B', 'K', 'M', 'G', 'T', 'P']:
+        if size < 1024:
+            return f"{size:.1f}{unit}"
+        size /= 1024
+    return f"{size:.1f}P"
+
+
 def list_directory_contents(contents, show_all=False):
     items = []
     for item in contents:
@@ -13,9 +21,11 @@ def list_directory_contents(contents, show_all=False):
     return items
 
 
-def format_item(item, path_prefix=""):
+def format_item(item, path_prefix="", human_readable=False):
     permissions = item.get('permissions', '----------')
     size = item.get('size', 0)
+    if human_readable:
+        size = human_readable_size(size)
     timestamp = item.get('time_modified', 0)
     date_time = datetime.fromtimestamp(timestamp).strftime('%b %d %H:%M')
     name = os.path.join(path_prefix, item['name']) if path_prefix else item['name']
@@ -61,6 +71,7 @@ def main():
     parser.add_argument('-l', action='store_true', help='List in long format with additional information')
     parser.add_argument('-r', action='store_true', help='Reverse the order of the output')
     parser.add_argument('-t', action='store_true', help='Sort by time modified')
+    parser.add_argument('-h', action='store_true', help='Show human readable size')
     parser.add_argument('--filter', type=str, help='Filter the results by file or dir')
     parser.add_argument('path', nargs='?', default='.', help='Path to the directory or file within the JSON structure')
     args = parser.parse_args()
@@ -95,12 +106,12 @@ def main():
 
         if args.l:
             for item in items:
-                print(format_item(item, path_prefix))
+                print(format_item(item, path_prefix, human_readable=args.h))
         else:
             print(' '.join([item['name'] for item in items]))
     else:
         if args.l:
-            print(format_item(target, path_prefix))
+            print(format_item(target, path_prefix, human_readable=args.h))
         else:
             print(target['name'])
 
