@@ -4,12 +4,14 @@ import sys
 import argparse
 from datetime import datetime
 
+
 def list_directory_contents(contents, show_all=False):
     items = []
     for item in contents:
         if show_all or not item['name'].startswith('.'):
             items.append(item)
     return items
+
 
 def format_item(item):
     permissions = item.get('permissions', '----------')
@@ -18,6 +20,7 @@ def format_item(item):
     date_time = datetime.fromtimestamp(timestamp).strftime('%b %d %H:%M')
     name = item['name']
     return f"{permissions} {size:>5} {date_time} {name}"
+
 
 def filter_items(items, filter_option):
     if filter_option == "file":
@@ -28,9 +31,11 @@ def filter_items(items, filter_option):
         print(f"error: '{filter_option}' is not a valid filter criteria. Available filters are 'dir' and 'file'.")
         sys.exit(1)
 
+
 def main():
     parser = argparse.ArgumentParser(description='List directory contents from JSON structure.')
-    parser.add_argument('-A', action='store_true', help='Include all files and directories, including those starting with a dot')
+    parser.add_argument('-A', action='store_true',
+                        help='Include all files and directories, including those starting with a dot')
     parser.add_argument('-l', action='store_true', help='List in long format with additional information')
     parser.add_argument('-r', action='store_true', help='Reverse the order of the output')
     parser.add_argument('-t', action='store_true', help='Sort by time modified')
@@ -66,6 +71,7 @@ def main():
             print(format_item(item))
     else:
         print(' '.join([item['name'] for item in top_level_contents]))
+
 
 if __name__ == '__main__':
     main()
