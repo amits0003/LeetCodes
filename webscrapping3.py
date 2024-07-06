@@ -1,13 +1,13 @@
 # importing necessary packages
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 # for holding the resultant list
 element_list = []
 
 driver = webdriver.Chrome()
-page_url = "https://webscraper.io/test-sites/e-commerce/static/computers/laptops?page=" + str(page)
+page_url = "https://webscraper.io/test-sites/e-commerce/static/computers/laptops?page="
 driver.get(page_url)
 title = driver.find_elements(By.CLASS_NAME, "title")
 price = driver.find_elements(By.CLASS_NAME, "price")
@@ -19,5 +19,5 @@ for i in range(len(title)):
 
 print(element_list)
 
-#closing the driver
+# closing the driver
 driver.close()
