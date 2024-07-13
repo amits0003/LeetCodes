@@ -62,12 +62,12 @@ def longestCommonPrefix(strs):
             return strs
 
 
-strs = ["baab", "bacb", "b", "cbc"]
-strs1 = ["abab", "aba", ""]
-str2 = ["aac", "cab", "abb"]
-str3 = ["abca", "aba", "aaab"]
-print(longestCommonPrefix(str3))
-print(strs[1:])
+# strs = ["baab", "bacb", "b", "cbc"]
+# strs1 = ["abab", "aba", ""]
+# str2 = ["aac", "cab", "abb"]
+# str3 = ["abca", "aba", "aaab"]
+# print(longestCommonPrefix(str3))
+# print(strs[1:])
 
 def alternate_min_max(array):
     # Sort the array
@@ -96,3 +96,19 @@ def alternate_min_max(array):
 # result = alternate_min_max(array)
 # print("Array sorted in alternating min/max pattern:")
 # print(result)
+
+
+strs = ["flower","flow","flight","fright"]
+strs = sorted(strs)
+print(strs)
+def sol1(strs) :
+    ans=""
+    strs = sorted(strs)
+
+    first = strs[0]
+    last = strs[-1]
+    for i in range(min(len(first), len(last))):
+        if (first[i] != last[i]):
+            return ans
+        ans += first[i]
+    return ans
