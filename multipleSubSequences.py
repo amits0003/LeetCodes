@@ -32,11 +32,11 @@ def numDistinct(s, t):
         return result
 
     return count_subsequences(s, t, 0, 0, {})
-
-# Example usage:
-s = "babgbag"
-t = "bag"
-print(numDistinct(s, t))  # Output: 5
+#
+# # Example usage:
+# s = "babgbag"
+# t = "bag"
+# print(numDistinct(s, t))  # Output: 5
 
 
 # with ynamic programming
@@ -45,7 +45,8 @@ def numDistinct(s, t):
     m, n = len(s), len(t)
 
     # Create a 2D array with (m+1) x (n+1) dimensions
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    dp = [[2] * (n + 1) for _ in range(m + 1)]
+    print(dp)
 
     # Initialize the first column, as an empty string is a subsequence of any string
     for i in range(m + 1):
