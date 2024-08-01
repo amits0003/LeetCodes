@@ -11,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 driver = webdriver.Chrome()
+driver.set_window_size(500, 400)
 driver.get("https://www.amazon.in/")
 
 search_input = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,
