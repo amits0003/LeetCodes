@@ -23,10 +23,32 @@ def isSubSequence(a,b):
     return i == len(a)
 
 
-d = 'acc'
-f = "abcde"
-print(f[:])
-print(isSubSequence(d,f))
+# d = 'acc'
+# f = "abcde"
+# print(f[:])
+# print(isSubSequence(d,f))
+
+s = "aec"
+t = "abcde"
+
+def isSubsequence2(s,t):
+    len_s = len(s)
+    len_t = len(t)
+    i,j = 0,0
+    resArr = []
+
+    while i < len_s and j < len_t :
+        if s[i] == t[j]:
+            i = i+1
+            resArr.append(t[j])
+        j = j+1
+
+    print(resArr)
+    return i == len(s)
+
+
+print(isSubsequence2(s,t))
+
 #
 #
 # def sq():
