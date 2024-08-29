@@ -13,12 +13,31 @@ class TreeNode:
 
 
 newBinaryTree = TreeNode("Drinks")
-leftChild = TreeNode("Hot")
-rightChild = TreeNode("Cold")
+hot = TreeNode("Hot")
+cold = TreeNode("Cold")
 
 # Now adding the leftchild and right Child to the Main Root Node
-newBinaryTree.leftChild = leftChild
-newBinaryTree.rightChild = rightChild
+
+newBinaryTree.leftChild = hot
+newBinaryTree.rightChild = cold
+
+# adding the left and right child to the left Subtree of Hot
+tea = TreeNode("Tea")
+coffee = TreeNode("Coffee")
+hot.leftChild = tea
+hot.rightChild = coffee
+
+# Adding the left and right Child to the left subtree of Tea
+blackTea = TreeNode("BlackTea")
+GreenTea = TreeNode("GreenTea")
+tea.leftChild = blackTea
+tea.rightChild = GreenTea
+
+# Adding the left and right child in the right sub tree of cold
+cola = TreeNode("Cola")
+fanta = TreeNode("Fanta")
+cold.leftChild = cola
+cold.rightChild = fanta
 
 
 def preOrderTraversal(rootNode):
@@ -29,7 +48,8 @@ def preOrderTraversal(rootNode):
     preOrderTraversal(rootNode.rightChild)
 
 
-print("\nPre Order Traversal of binary Tree : \n", preOrderTraversal(newBinaryTree))
+print("\nPre Order Traversal of binary Tree : \n")
+preOrderTraversal(newBinaryTree)
 
 
 # in order traversal of binary tree
