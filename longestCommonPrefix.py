@@ -98,11 +98,13 @@ def alternate_min_max(array):
 # print(result)
 
 
-strs = ["flower","flow","flight","fright"]
-strs = sorted(strs)
-print(strs)
-def sol1(strs) :
-    ans=""
+strs1 = ["flower", "flow", "flight"]
+strs1 = sorted(strs1)
+print(strs1)
+
+
+def sol1(strs):
+    ans = ""
     strs = sorted(strs)
 
     first = strs[0]
@@ -112,3 +114,32 @@ def sol1(strs) :
             return ans
         ans += first[i]
     return ans
+
+
+print(sol1(strs1))
+strs = ["baab", "bacb", "b", "bc"]
+strs1 = ["abab", "aba", ""]
+str2 = ["aac", "cab", "abb"]
+str3 = ["abca", "aba", "aaab"]
+
+print(sol1(strs))
+print(sol1(strs1))
+print(sol1(str2))
+print(sol1(str3))
+
+
+def sol2(str1):
+    first = str1[0]
+    last = str1[-1]
+    ans = ""
+    str1 = sorted(str1)
+
+    for var in range(min(len(first), len(last))):
+        if first[var] != last[var]:
+            return ans
+        ans += first[var]
+    return ans
+
+
+strs = ["flower", "flow", "flight"]
+print(sol2(strs))
