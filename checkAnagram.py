@@ -1,4 +1,4 @@
-'''
+"""
 Given two strings s1 and s2 consisting of
 lowercase characters, the task is to check whether the two given strings are
 anagrams of each other or not. An anagram of a string is another string that contains the same characters,
@@ -9,7 +9,7 @@ Output: “Anagram”
 Explanation: All characters of “listen” and “silent” are the same.
 Input: str1 = “gram”  str2 = “arm”
 Output: “Not Anagram”
-'''
+"""
 
 print("Hello World")
 
