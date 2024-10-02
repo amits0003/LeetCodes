@@ -22,6 +22,3 @@ def pallindrome(x):
 print(pallindrome(-121))
 
 signedChar = str(-121)
-i = char
-
-print(signedChar)

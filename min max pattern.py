@@ -1,31 +1,31 @@
-import sys
-# loading gc
-import gc
+# max, min pattern
 
-# get the current collection
-# thresholds as a tuple
-collected = gc.collect()
+inputData = [7, 8, 9, 6, 4, 5, 3, 44, 66, 67, 33, 33, 3434]
 
-print("Garbage collector: collected",
-          "%d objects." % collected)
-# Create two objects that refer to each other
-x = [1, 2, 3]
-print(sys.getrefcount(x))
-y = [4, 5, 6]
-print(sys.getrefcount(x))
-x.append(y)
 
-print('x = ', x)
-y.append(x)
-print(sys.getrefcount(y))
+def max_min_pattern(data):
+    outputPattern = []
+    inputData.sort(reverse=True)
 
-print('y = ', y)
+    print(inputData)
 
-print('x1 = ', x)
+    lenIpData = len(inputData)
 
-print('y1 = ', y)
+    mid_range_len = lenIpData // 2
 
-print(sys.getrefcount(x))# loading gc
+    # print(mid_range_len)
 
-print("Garbage collector: collected",
-          "%d objects." % collected)
+    for each_num in range(mid_range_len):
+        outputPattern.append(inputData[each_num])
+        outputPattern.append(inputData[lenIpData - 1])
+        lenIpData = lenIpData - 1
+
+    for num in inputData:
+        if num not in outputPattern:
+            outputPattern.append(num)
+
+    return outputPattern
+
+
+op = max_min_pattern(inputData)
+print(op)

@@ -62,10 +62,84 @@ def longestCommonPrefix(strs):
             return strs
 
 
-strs = ["baab", "bacb", "b", "cbc"]
-strs1 = ["abab", "aba", ""]
-str2 = ["aac", "cab", "abb"]
-str3 = ["abca", "aba", "aaab"]
+# strs = ["baab", "bacb", "b", "cbc"]
+# strs1 = ["abab", "aba", ""]
+# str2 = ["aac", "cab", "abb"]
+# str3 = ["abca", "aba", "aaab"]
 # print(longestCommonPrefix(str3))
 # print(strs[1:])
 
+def alternate_min_max(array):
+    # Sort the array
+    sorted_array = sorted(array)
+
+    # Initialize result array
+    result = []
+
+    # Indices for filling result
+    left, right = 0, len(array) - 1
+
+    # Fill result with alternate min and max values
+    for i in range(len(array)):
+        if i % 2 == 0:
+            result.append(sorted_array[right])
+            right -= 1
+        else:
+            result.append(sorted_array[left])
+            left += 1
+
+    return result
+
+
+# Example usage:
+# array = [1, 23, 43, 5435, 6565, 69494, 242, 33]
+# result = alternate_min_max(array)
+# print("Array sorted in alternating min/max pattern:")
+# print(result)
+
+
+strs1 = ["flower", "flow", "flight"]
+strs1 = sorted(strs1)
+print(strs1)
+
+
+def sol1(strs):
+    ans = ""
+    strs = sorted(strs)
+
+    first = strs[0]
+    last = strs[-1]
+    for i in range(min(len(first), len(last))):
+        if (first[i] != last[i]):
+            return ans
+        ans += first[i]
+    return ans
+
+
+print(sol1(strs1))
+strs = ["baab", "bacb", "b", "bc"]
+strs1 = ["abab", "aba", ""]
+str2 = ["aac", "cab", "abb"]
+str3 = ["abca", "aba", "aaab"]
+
+print(sol1(strs))
+print(sol1(strs1))
+print(sol1(str2))
+print(sol1(str3))
+
+
+def sol2(str1):
+    first = str1[0]
+    last = str1[-1]
+    ans = ""
+    str1 = sorted(str1)
+
+    for var in range(min(len(first), len(last))):
+        if first[var] != last[var]:
+            return ans
+        ans += first[var]
+    return ans
+
+
+strs = ["flower", "flow", "flight"]
+print(sol2(strs))
