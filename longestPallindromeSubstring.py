@@ -17,14 +17,14 @@ s = "ccd"
 
 def palindromeSubstring(s):
     for i, v in enumerate(s):
-        if s[i] == s[len(s) - i - 1]:
+        if s[i] == s[len(s) - i-1]:
             tempS3 = s[i:len(s) - i]
             tempS4 = tempS3[::-1]
             if tempS4 == tempS3:
                 return tempS3
         else:
             tempS1 = s[i + 1:]
-            temps2 = tempS1[::-1]
+            temps2 = s[::-1]
             if tempS1 == temps2:
                 return tempS1
 
