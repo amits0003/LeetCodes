@@ -18,6 +18,7 @@ Example 3:
 Input: s = "paper", t = "title"
 Output: true"""
 
+
 # Method 1 : some edge case are failing here
 
 class Solution:
@@ -46,7 +47,8 @@ class Solution:
 s = "foo"
 t = "bar"
 obj1 = Solution()
-print(obj1.isIsomorphic(s,t))
+print(obj1.isIsomorphic(s, t))
+
 
 # Methdod 2 : creating character mapping
 
@@ -73,5 +75,3 @@ class Solution:
             map_t_to_s[char_t] = char_s
 
         return True
-
-
