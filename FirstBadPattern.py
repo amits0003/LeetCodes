@@ -60,4 +60,5 @@ def firstBadVersion1(n):
 
     return left
 
+
 print(firstBadVersion1(55057209520957209572095720975))
