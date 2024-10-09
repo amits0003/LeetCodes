@@ -95,7 +95,7 @@ class Solution:
             current.next = l2
 
         return dummy.next
-
+  
     # Helper function to recursively merge the lists
     def merge_lists_helper(self, lists, start, end):
         # Base case: if there's only one list
