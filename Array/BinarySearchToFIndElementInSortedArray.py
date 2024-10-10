@@ -24,8 +24,8 @@ def binary_search(arr, target):
 
 
 # Example usage:
-sorted_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-target_element = 5
+sorted_array = [4,5,6,7,0,1,2]
+target_element = 0
 
 result = binary_search(sorted_array, target_element)
 
