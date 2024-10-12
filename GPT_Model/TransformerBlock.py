@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import optim
 from GPT_Model.modelV1 import seq_length, batch_size, word_to_idx, idx_to_word, \
-    device, create_batches
+    device, create_batches, data_indices
 from GPT_Model.trainingProcedure import train_step, model
 
 
