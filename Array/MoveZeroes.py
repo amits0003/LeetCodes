@@ -20,4 +20,18 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        k = 0
+        for i, v in enumerate(nums):
+            if v != 0:
+                nums[k], nums[i] = nums[i], nums[k]
+                k += 1
 
+        # for i in range(k,len(nums)):
+        #     nums[i] = 0
+
+        return nums
+
+
+nums = [0,1,0]
+obj1 = Solution()
+print(obj1.moveZeroes(nums))
