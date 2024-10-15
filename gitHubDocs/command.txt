@@ -1,0 +1,40 @@
+1. command to create a pull request from dev to main
+
+gh pr create --base main --head dev --title "Creating Pull Request for Move Zeroes" --body "move zeroes code update"
+
+2. review the pull request through command line
+
+    # List all open PRs
+    gh pr list
+
+    # View the details of PR #5
+    gh pr view 5
+
+    # See the code diff of PR #5
+    gh pr diff 5
+
+    # Add a comment to PR #5
+    gh pr comment 5 --body "Looks good overall, but I'd recommend reviewing X."
+
+    # Approve PR #5
+    gh pr review 5 --approve
+
+    # Or, if requesting changes:
+    gh pr review 5 --request-changes --body "Please fix the issue with Y before merging."
+
+3. merge the pull request
+
+using pr number
+gh pr merge <PR-number>
+
+merge and squash all commits
+gh pr merge 5 --squash
+
+merge and rebase
+gh pr merge 5 --rebase
+
+automatically delete the branch after merge
+gh pr merge 5 --merge --delete-branch
+
+merge with title and message
+gh pr merge 1 --merge --body "Looks Good, PR #1 is merged"
