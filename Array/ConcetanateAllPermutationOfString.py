@@ -8,6 +8,8 @@ are all concatenated strings. "acdbef" is not a concatenated string because it i
 permutation of words.
 Return an array of the starting indices of all the concatenated substrings in s. You can return the answer in any order.
 """
+from collections import Counter
+from typing import List
 
 
 class Solution:
